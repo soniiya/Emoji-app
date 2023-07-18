@@ -1,0 +1,36 @@
+
+.loading-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+  }
+  
+  .loading-bar {
+    width: 200px;
+    height: 10px;
+    background-color: #ccc;
+    position: relative;
+    border-radius: 10px;
+  }
+  
+  .loading-bar::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background-color: #007bff; 
+    animation: loadingAnimation 2s linear;
+    border-radius: 10px;
+  }
+  
+  @keyframes loadingAnimation {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
