@@ -6,13 +6,13 @@ const itemsperpage= 10;
 
 function Apidata({apilist}) {
   const [selectedCategory, setSelectedCategory] = useState('');
-  // const [currentPage, setCurrentPage] = useState(1);
+   const [currentPage, setCurrentPage] = useState(1);
 
   const categories = [...new Set(apilist.map((emoji) => emoji.category))];
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
-   // setCurrentPage(1);
+   setCurrentPage(1);
   };
 
   const filteredEmojis = apilist.filter(
@@ -23,9 +23,15 @@ function Apidata({apilist}) {
 
   const totalPages = Math.ceil(filteredEmojis.length / itemsperpage);
 
-  // const handlePageChange = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const getEmojisForCurrentPage = () => {
+    const startIndex = (currentPage - 1) * itemsperpage;
+    const endIndex = startIndex + itemsperpage;
+    return filteredEmojis.slice(startIndex, endIndex);
+  };
 
   return (
     <>
@@ -51,7 +57,7 @@ function Apidata({apilist}) {
         <div>No emojis found for the selected category.</div>
       ) :
      
-      filteredEmojis.map((emoji)=>(
+      getEmojisForCurrentPage().map((emoji)=>( 
       <div key={emoji.unicode} className='emoji-item'>
       <span className='emoji-icon' dangerouslySetInnerHTML={{ __html: emoji.htmlCode[0] }} />
 
@@ -65,7 +71,7 @@ function Apidata({apilist}) {
     }
     </div>
 
-      {/* <div className="pagination">
+      <div className="pagination">
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
@@ -75,7 +81,7 @@ function Apidata({apilist}) {
             {index + 1}
           </button>
         ))}
-      </div> */}
+      </div>
   </>
   )
 }

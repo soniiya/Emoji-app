@@ -15,6 +15,11 @@
   font-weight:bold;
 }
 
+.filter-container select{
+  border-radius: 5px;
+  font-size: 20px;
+}
+
 .emoji-item{
     display: flex;
     flex-direction: column;
@@ -73,3 +78,25 @@
   .emoji-details .emoji-group:before {
     content: 'Group: ';
   } 
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 4rem;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  margin: 10px 5px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.pagination button.active {
+  background-color: #0056b3;
+}
